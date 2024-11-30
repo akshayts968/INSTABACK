@@ -12,7 +12,6 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const fs = require('fs');
-const { connect } = require('./db');
 const app = express();
 const MONGO_URL = process.env.MONGO||"mongodb://127.0.0.1:27017/temperary";
 const cloudinary = require('cloudinary').v2;
