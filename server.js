@@ -7,7 +7,6 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 8080;
 const { Server } = require('socket.io');
 require('dotenv').config();
-const http = require('http');
 
 const io = new Server(server, {
     cors: {
@@ -15,6 +14,7 @@ const io = new Server(server, {
         methods: ["GET", "POST"],
     },
 });
+
 io.on('connection', (socket) => {
     console.log('A user connected');
 
