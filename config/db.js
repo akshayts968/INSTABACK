@@ -5,7 +5,11 @@ require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(MONGO, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000, 
+    });
     console.log("Connected to DB");
 
     const store = new MongoDBStore({
