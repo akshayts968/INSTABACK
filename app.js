@@ -22,6 +22,9 @@ const Message = require("./model/Message.js");
 const Comment = require("./model/Comment.js");
 const MongoStore = require('connect-mongo');
 const Reset = require('./utils/Reset.js');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_API_KEY,
@@ -100,18 +103,22 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     next();
-});
-
+});/*
+const store = new MongoDBStore({
+    uri: process.env.MONGODB_URI, // Replace with your MongoDB connection string
+    collection: 'sessions',
+});*/
 mongoose.connect(MONGO_URL)
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
-    const store = MongoStore.create({
-    mongoUrl:MONGO_URL,
-    crypto: {
-        secret:process.env.SECRET,
-    },
-    touchAfter: 24 * 3600,
-});
+    const store = new MongoDBStore({
+      uri: MONGO_URL,
+      collection: 'sessions',
+      crypto: {
+          secret: process.env.secret,
+      },
+      touchAfter: 24 * 3600,
+  });
 
 store.on("error",()=>{
     console.log("ERROR in MONGO SESSION STORE",err);

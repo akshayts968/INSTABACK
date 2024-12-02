@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(session(sessionOptions));
 app.use(flash());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: `${process.env.FrontEnd}`,
     methods: ['GET', 'POST','DELETE','PUT'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
