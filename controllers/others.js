@@ -8,6 +8,13 @@ const allUser =  async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+const err =  async (req, res) => {
+    try {
+        res.send("FAILED");
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 const sresult = async (req, res) => {
     const query = req.query.query;
     try {
@@ -28,4 +35,4 @@ const reset = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-module.exports = { allUser,sresult,reset};
+module.exports = { allUser,sresult,reset,err};
