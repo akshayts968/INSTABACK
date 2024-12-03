@@ -15,6 +15,7 @@ const messageRoutes = require('./routes/message');
 const extraRoutes = require('./routes/other');
 
 const app = express();
+require('dotenv').config();
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -36,7 +37,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(express.urlencoded({ extended: true }));
 app.use('/login', authRoutes);
-app.use('/message', messageRoutes);
+app.use('/Messages', messageRoutes);
 app.use('/user', userRoutes);
 app.use('/comment', commentRoutes);
 app.use('/post', postRoutes);

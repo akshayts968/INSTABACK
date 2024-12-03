@@ -5,5 +5,5 @@ const router = express.Router();
 
 router.get('/', allUser);
 router.get('/sresult', sresult);
-//router.get('/all', reset);
+router.get('/all', allUser);
 module.exports = router;

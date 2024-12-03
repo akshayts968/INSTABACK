@@ -4,7 +4,7 @@ const { sendMessage, getMessages, deleteMessage } = require('../controllers/mess
 
 const router = express.Router();
 
-router.post('/send', sendMessage);
+router.post('/:sendId/:rId', sendMessage);
 router.get('/:userId/:receiverId',  getMessages);
 router.delete('/:messageId',deleteMessage);
 
